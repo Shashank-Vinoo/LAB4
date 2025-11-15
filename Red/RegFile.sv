@@ -18,7 +18,7 @@ module RegFile(
 
     always_ff @( posedge clk ) begin
         if(WE3) begin
-            registers[AD3] = WD3;
+            registers[AD3] <= WD3;
         end
     end
 
