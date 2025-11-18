@@ -1,16 +1,16 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Symbol table implementation internals
 
-#include "VPCsrc_MUX__Syms.h"
-#include "VPCsrc_MUX.h"
-#include "VPCsrc_MUX___024root.h"
+#include "VBranch_PC_Adder__Syms.h"
+#include "VBranch_PC_Adder.h"
+#include "VBranch_PC_Adder___024root.h"
 
 // FUNCTIONS
-VPCsrc_MUX__Syms::~VPCsrc_MUX__Syms()
+VBranch_PC_Adder__Syms::~VBranch_PC_Adder__Syms()
 {
 }
 
-VPCsrc_MUX__Syms::VPCsrc_MUX__Syms(VerilatedContext* contextp, const char* namep, VPCsrc_MUX* modelp)
+VBranch_PC_Adder__Syms::VBranch_PC_Adder__Syms(VerilatedContext* contextp, const char* namep, VBranch_PC_Adder* modelp)
     : VerilatedSyms{contextp}
     // Setup internal state of the Syms class
     , __Vm_modelp{modelp}

@@ -2,9 +2,9 @@
 # DESCRIPTION: Verilator output: Makefile for building Verilated archive or executable
 #
 # Execute this makefile from the object directory:
-#    make -f VPCsrc_MUX.mk
+#    make -f VBranch_PC_Adder.mk
 
-default: VPCsrc_MUX
+default: VBranch_PC_Adder
 
 ### Constants...
 # Perl executable (from $PERL)
@@ -30,9 +30,9 @@ VM_SC_TARGET_ARCH = linux
 
 ### Vars...
 # Design prefix (from --prefix)
-VM_PREFIX = VPCsrc_MUX
+VM_PREFIX = VBranch_PC_Adder
 # Module prefix (from --prefix)
-VM_MODPREFIX = VPCsrc_MUX
+VM_MODPREFIX = VBranch_PC_Adder
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
 
@@ -42,7 +42,7 @@ VM_USER_LDLIBS = \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
-	PCsrc_MUX_tb \
+	Branch_PC_Adder_tb \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
@@ -51,18 +51,18 @@ VM_USER_DIR = \
 
 ### Default rules...
 # Include list of all generated classes
-include VPCsrc_MUX_classes.mk
+include VBranch_PC_Adder_classes.mk
 # Include global rules
 include $(VERILATOR_ROOT)/include/verilated.mk
 
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-PCsrc_MUX_tb.o: PCsrc_MUX_tb.cpp
+Branch_PC_Adder_tb.o: Branch_PC_Adder_tb.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
-VPCsrc_MUX: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
+VBranch_PC_Adder: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
 	$(LINK) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) $(LIBS) $(SC_LIBS) -o $@
 
 

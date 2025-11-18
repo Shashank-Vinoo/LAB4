@@ -4,7 +4,8 @@ module Branch_PC_Adder(
     output logic [31:0] branch_PC
 );
 
-
+    assign branch_PC = PC + ImmOp;
 
 endmodule
 
+// branch_PC = PC + ImmOp

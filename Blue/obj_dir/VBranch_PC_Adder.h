@@ -5,30 +5,29 @@
 // The class here is then constructed to instantiate the design.
 // See the Verilator manual for examples.
 
-#ifndef VERILATED_VPCSRC_MUX_H_
-#define VERILATED_VPCSRC_MUX_H_  // guard
+#ifndef VERILATED_VBRANCH_PC_ADDER_H_
+#define VERILATED_VBRANCH_PC_ADDER_H_  // guard
 
 #include "verilated.h"
 
-class VPCsrc_MUX__Syms;
-class VPCsrc_MUX___024root;
+class VBranch_PC_Adder__Syms;
+class VBranch_PC_Adder___024root;
 class VerilatedVcdC;
 
 // This class is the main interface to the Verilated model
-class VPCsrc_MUX VL_NOT_FINAL : public VerilatedModel {
+class VBranch_PC_Adder VL_NOT_FINAL : public VerilatedModel {
   private:
     // Symbol table holding complete model state (owned by this class)
-    VPCsrc_MUX__Syms* const vlSymsp;
+    VBranch_PC_Adder__Syms* const vlSymsp;
 
   public:
 
     // PORTS
     // The application code writes and reads these signals to
     // propagate new values into/out from the Verilated model.
-    VL_IN8(&PCsrc,0,0);
-    VL_IN(&branch_PC,31,0);
-    VL_IN(&inc_PC,31,0);
-    VL_OUT(&next_PC,31,0);
+    VL_IN(&PC,31,0);
+    VL_IN(&ImmOp,31,0);
+    VL_OUT(&branch_PC,31,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
@@ -36,19 +35,19 @@ class VPCsrc_MUX VL_NOT_FINAL : public VerilatedModel {
 
     // Root instance pointer to allow access to model internals,
     // including inlined /* verilator public_flat_* */ items.
-    VPCsrc_MUX___024root* const rootp;
+    VBranch_PC_Adder___024root* const rootp;
 
     // CONSTRUCTORS
     /// Construct the model; called by application code
     /// If contextp is null, then the model will use the default global context
     /// If name is "", then makes a wrapper with a
     /// single model invisible with respect to DPI scope names.
-    explicit VPCsrc_MUX(VerilatedContext* contextp, const char* name = "TOP");
-    explicit VPCsrc_MUX(const char* name = "TOP");
+    explicit VBranch_PC_Adder(VerilatedContext* contextp, const char* name = "TOP");
+    explicit VBranch_PC_Adder(const char* name = "TOP");
     /// Destroy the model; called (often implicitly) by application code
-    virtual ~VPCsrc_MUX();
+    virtual ~VBranch_PC_Adder();
   private:
-    VL_UNCOPYABLE(VPCsrc_MUX);  ///< Copying not allowed
+    VL_UNCOPYABLE(VBranch_PC_Adder);  ///< Copying not allowed
 
   public:
     // API METHODS

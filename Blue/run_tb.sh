@@ -119,5 +119,5 @@ echo "[INFO] Running tests..."
 
 if [ -f waveform.vcd ]; then
     echo "[INFO] Opening waveform..."
-    gtkwave waveform.vcd &
+    gtkwave waveform.vcd 
 fi

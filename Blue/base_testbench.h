@@ -7,7 +7,7 @@
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 #include "gtest/gtest.h"
-#include "VPCsrc_MUX.h"
+#include "VBranch_PC_Adder.h"
 
 extern unsigned int ticks;
 
@@ -16,7 +16,7 @@ class BaseTestbench : public ::testing::Test
 public:
     void SetUp() override
     {
-        top = std::make_unique<VPCsrc_MUX>();
+        top = std::make_unique<VBranch_PC_Adder>();
 
 #ifndef __APPLE__
         tfp = std::make_unique<VerilatedVcdC>();
@@ -39,7 +39,7 @@ public:
     virtual void initializeInputs() = 0;
 
 protected:
-    std::unique_ptr<VPCsrc_MUX> top;
+    std::unique_ptr<VBranch_PC_Adder> top;
 
 #ifndef __APPLE__
     std::unique_ptr<VerilatedVcdC> tfp;
