@@ -34,7 +34,7 @@ For example:
 **Windows**
 ```
 cd tb
-./runm.sh tests/unit_tests/RegFile_tb.cpp
+./runw.sh tests/unit_tests/RegFile_tb.cpp
 ```
 
 
