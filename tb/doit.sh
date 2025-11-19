@@ -38,10 +38,6 @@ rm -rf obj_dir
 
 cd "$SCRIPT_DIR"
 
-# Try to detect GoogleTest once (not per test)
-# Allow user override:
-#   export GTEST_INCLUDE=/path/to/include
-#   export GTEST_LIB=/path/to/lib
 if [[ -z "${GTEST_INCLUDE:-}" || -z "${GTEST_LIB:-}" ]]; then
     OS_TYPE=$(uname -s 2>/dev/null || echo unknown)
 
