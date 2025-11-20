@@ -1,5 +1,20 @@
 # RISCV CPU - Team 8
 
+## Development
+
+- [ ] Finish single cycle CPU
+  - [x] Finish individual modules
+  - [ ] Complete top level CPU
+  - [ ] Write testbench for top level
+  - [ ] Clean module names
+- [ ] Pipelined processor
+  - [ ] Pipelined control unit
+  - [ ] Insert stage registers
+  - [ ] Testbench for simple pipelined CPU
+  - [ ] Hazard unit:
+    - [ ] Data hazard handling by forwarding
+    - [ ] Control hazard handling by stalling
+
 ## Testbench usage
 
 Run all tests from the tb directory, `cd tb`  
