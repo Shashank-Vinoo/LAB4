@@ -38,6 +38,7 @@ logic [31:0] ALU_Op1;
 logic [31:0] ALU_Op2;
 logic [31:0] ALU_out;
 logic EQ;
+logic [31:0] data_rd;
 
 Branch_PC_Adder Branch_PC_Adder(
     .PC(PC),
@@ -108,7 +109,20 @@ ALU ALU(
     .EQ(EQ)
 );
 
-assign WD3 = ALU_out;
+Data Data_Mem(
+    .A(ALU_out),
+    .clk(clk),
+    .WD(RD2),
+    .WE(MemWrite),
+    .RD(data_rd)
+);
+
+Data_mux Data_Mux(
+    .ReadData(data_rd),
+    .ALUResult(ALU_out),
+    .ResultSrc(ResultSrc),
+    .Result(WD3)
+);
 
 RegFile RegFile(
     .clk (clk),
