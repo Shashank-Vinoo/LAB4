@@ -102,6 +102,36 @@ TEST_F(CpuTestbench, StoreLoadTest)
 }
 
 
+
+TEST_F(CpuTestbench, fibonacci)
+{
+    
+    compile("asm/fib_10.S");
+
+    // cpu reset
+    top->rst = 1;
+    runSimulation(1);
+    top->rst = 0;
+
+    bool success = false;
+
+    // running enough cycles for lw to work
+    for (int i = 0; i < CYCLES; i++) {
+        runSimulation(1);
+        if (top->a0 == 55) {  
+            success = true;
+            SUCCEED();
+            break;
+        }
+    }
+
+    if (!success) {
+        FAIL() << "a0 is not 55 so not right fib10 value";
+    }
+}
+
+
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
