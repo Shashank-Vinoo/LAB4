@@ -1,4 +1,4 @@
-module PC_REG(
+module pc_reg(
     input logic clk,
     input logic rst,
     input logic [31:0] next_PC,

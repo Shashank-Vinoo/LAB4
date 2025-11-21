@@ -40,20 +40,20 @@ logic [31:0] ALU_out;
 logic EQ;
 logic [31:0] data_rd;
 
-Branch_PC_Adder Branch_PC_Adder(
+branch_pc_adder branch_pc_adder_i(
     .PC(PC),
     .ImmOp(ImmOp),
     .branch_PC(branch_PC)
 );
 
-PC_REG PC_REG(
+pc_reg pc_reg_i(
     .clk(clk),
     .rst(rst),
     .next_PC(next_PC),
     .PC(PC)
 );
 
-PCsrc_MUX PCsrc_MUX(
+pc_src_mux pc_src_mux_i(
     .PCsrc(PCSrc),
     .branch_PC(branch_PC),
     .inc_PC(inc_PC),
@@ -62,7 +62,7 @@ PCsrc_MUX PCsrc_MUX(
 
 assign inc_PC = PC + 32'd4;
 
-ControlUnit ControlUnit(
+control_unit control_unit_i(
     .opcode(opcode),
     .funct3(funct3),
     .funct7(funct7),
@@ -76,13 +76,13 @@ ControlUnit ControlUnit(
     .RegWrite(RegWrite)
 );
 
-ImmGen ImmGen(
+imm_gen imm_gen_i(
     .ImmSrc(ImmSrc),
     .instruction(instruction),
     .Imm(ImmOp)
 );
 
-InstrMem InstrMem(
+instr_mem instr_mem_i(
     .Imem_Addr(PC),
     .Read_Data(instruction)
 );
@@ -94,14 +94,14 @@ assign AD1 = instruction[19:15];
 assign AD2 = instruction[24:20];
 assign AD3 = instruction[11:7];
 
-ALU_Src_Mux ALU_Src_Mux(
+alu_src_mux alu_src_mux_i(
     .regOp2(RD2),
     .ImmOp(ImmOp),
     .ALUsrc(ALUSrc),
     .ALUOp2(ALU_Op2)
 );
 
-ALU ALU(
+alu alu_i(
     .ALU_Op1(RD1),
     .ALU_Op2(ALU_Op2),
     .ALUctrl(ALUControl),
@@ -109,7 +109,7 @@ ALU ALU(
     .EQ(EQ)
 );
 
-Data Data_Mem(
+data_mem data_mem_i(
     .A(ALU_out),
     .clk(clk),
     .WD(RD2),
@@ -117,14 +117,14 @@ Data Data_Mem(
     .RD(data_rd)
 );
 
-Data_mux Data_Mux(
+data_mux data_mux_i(
     .ReadData(data_rd),
     .ALUResult(ALU_out),
     .ResultSrc(ResultSrc),
     .Result(WD3)
 );
 
-RegFile RegFile(
+reg_file reg_file_i(
     .clk (clk),
     .rst (rst),
     .WE3 (RegWrite),

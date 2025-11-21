@@ -1,4 +1,4 @@
-module RegFile(
+module reg_file(
     input logic clk,
     input logic rst,
     input logic WE3,

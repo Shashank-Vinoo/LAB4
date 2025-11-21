@@ -1,6 +1,6 @@
-/* verilator lint_off UNUSEDSIGNAL */
+/* verilator lint_off UNUSED */
 // lint off to prevent errors not using all the bits in the instruction
-module ImmGen(
+module imm_gen(
     input logic [1:0] ImmSrc,
     input logic [31:0] instruction,
     output logic [31:0] Imm  
@@ -22,7 +22,8 @@ end
 
 endmodule
 
-/* verilator lint_on UNUSEDSIGNAL */
-  
+/* verilator lint_on UNUSED */
+
+
 
 

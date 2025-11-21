@@ -1,4 +1,4 @@
-module Data_mux (
+module data_mux (
     input logic[31:0] ReadData,
     input logic[31:0] ALUResult,
     input logic ResultSrc,

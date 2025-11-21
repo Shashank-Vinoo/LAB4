@@ -2,11 +2,11 @@
 
 ## Development
 
-- [ ] Finish single cycle CPU
+- [x] Finish single cycle CPU
   - [x] Finish individual modules
-  - [ ] Complete top level CPU
-  - [ ] Write testbench for top level
-  - [ ] Clean module names
+  - [x] Complete top level CPU
+  - [x] Write testbench for top level
+  - [x] Clean module names
 - [ ] Pipelined processor
   - [ ] Pipelined control unit
   - [ ] Insert stage registers

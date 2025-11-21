@@ -1,4 +1,4 @@
-module InstrMem#(
+module instr_mem#(
     parameter DEPTH = 1024
 )(
     input logic [31:0] Imem_Addr, 
@@ -15,4 +15,17 @@ initial begin
 end 
 
 endmodule
+
+
+
+
+
+
+
+
+
+
+
+
+
 
