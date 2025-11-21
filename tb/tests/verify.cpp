@@ -46,7 +46,6 @@ TEST_F(CpuTestbench, BaseProgramTest)
 // }
 
 
-
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
