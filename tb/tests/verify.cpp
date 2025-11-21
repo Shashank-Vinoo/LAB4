@@ -15,8 +15,18 @@ protected:
     }
 };
 
-TEST_F(CpuTestbench, BaseProgramTest)
-{
+
+// Note this is how we are going to test your CPU. Do not worry about this for
+// now, as it requires a lot more instructions to function
+// TEST_F(CpuTestbench, Return5Test)
+// {
+//     system("./compile.sh c/return_5.c");
+//     runSimulation(100);
+//     EXPECT_EQ(top->a0, 5);
+// }
+
+
+TEST_F(CpuTestbench, BaseProgramTest){
     bool success = false;
     system("./compile.sh asm/program.S");
 
@@ -36,14 +46,60 @@ TEST_F(CpuTestbench, BaseProgramTest)
     }
 }
 
-// Note this is how we are going to test your CPU. Do not worry about this for
-// now, as it requires a lot more instructions to function
-// TEST_F(CpuTestbench, Return5Test)
-// {
-//     system("./compile.sh c/return_5.c");
-//     runSimulation(100);
-//     EXPECT_EQ(top->a0, 5);
-// }
+
+TEST_F(CpuTestbench, Countdown)
+{
+    compile("asm/count_down.S");
+    // you need to reset the CPU as a previous test was already run
+    top->rst = 1;
+    runSimulation(1);
+    top->rst = 0;
+
+    bool success = false;
+
+    // Run for enough cycles (30 is safe)
+    for (int i = 0; i < 40; i++) {
+        runSimulation(1);
+        if (top->a0 == 0) {        
+            SUCCEED();
+            success = true;
+            break;
+        }
+    }
+
+    if (!success) {
+        FAIL() << "Countdown did not reach 0";
+    }
+}
+
+
+
+TEST_F(CpuTestbench, StoreLoadTest)
+{
+    
+    compile("asm/store_load.S");
+
+    // cpu reset
+    top->rst = 1;
+    runSimulation(1);
+    top->rst = 0;
+
+    bool success = false;
+
+    // running enough cycles for lw to work
+    for (int i = 0; i < 40; i++) {
+        runSimulation(1);
+        if (top->a0 == 10) {  
+            success = true;
+            SUCCEED();
+            break;
+        }
+    }
+
+    if (!success) {
+        FAIL() << "Store/load test: a0 did not become 10";
+    }
+}
 
 
 int main(int argc, char **argv)
