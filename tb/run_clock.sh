@@ -13,17 +13,17 @@ echo "=== Compiling RISC-V Design ==="
 iverilog -g2012 -Wall -o "${OUT}" \
     "${TB_FILE}" \
     "${RTL_DIR}/top.sv" \
-    "${RTL_DIR}/PC_REG.sv" \
-    "${RTL_DIR}/PCsrc_MUX.sv" \
-    "${RTL_DIR}/Branch_PC_Adder.sv" \
-    "${RTL_DIR}/InstrMem.sv" \
-    "${RTL_DIR}/ImmGen.sv" \
-    "${RTL_DIR}/ControlUnit.sv" \
-    "${RTL_DIR}/ALU_Src_Mux.sv" \
-    "${RTL_DIR}/ALU.sv" \
-    "${RTL_DIR}/RegFile.sv" \
-    "${RTL_DIR}/Data.sv" \
-    "${RTL_DIR}/Data_mux.sv"
+    "${RTL_DIR}/pc_reg.sv" \
+    "${RTL_DIR}/pc_src_mux.sv" \
+    "${RTL_DIR}/branch_pc_adder.sv" \
+    "${RTL_DIR}/instr_mem.sv" \
+    "${RTL_DIR}/imm_gen.sv" \
+    "${RTL_DIR}/control_unit.sv" \
+    "${RTL_DIR}/alu_src_mux.sv" \
+    "${RTL_DIR}/alu.sv" \
+    "${RTL_DIR}/reg_file.sv" \
+    "${RTL_DIR}/data_mem.sv" \
+    "${RTL_DIR}/data_mux.sv"
 
 echo "=== Running Simulation ==="
 vvp "${OUT}" +IMEM="${HEX_FILE}"

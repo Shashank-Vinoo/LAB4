@@ -88,9 +88,14 @@ for file in "${files[@]}"; do
         name="top"
     fi
 
-    # Translate Verilog -> C++ including testbench
+    sv_file="${RTL_FOLDER}/${name}.sv"
+    if [[ ! -f "${sv_file}" ]]; then
+        echo "${RED}Error: RTL file not found for base name '${name}'.${RESET}"
+        exit 1
+    fi
+
     verilator   -Wall --trace \
-                -cc "${RTL_FOLDER}/${name}.sv" \
+                -cc "${sv_file}" \
                 --exe "${file}" \
                 -y "${RTL_FOLDER}" \
                 --prefix "Vdut" \

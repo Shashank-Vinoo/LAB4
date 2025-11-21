@@ -42,10 +42,10 @@ module top_tb;
             $display("\n=== Register File State at time %0t ===", $time);
             for (i = 0; i < 32; i = i + 4) begin
                 $display("x%02d: %h  x%02d: %h  x%02d: %h  x%02d: %h",
-                    i,   dut.RegFile.registers[i],
-                    i+1, dut.RegFile.registers[i+1],
-                    i+2, dut.RegFile.registers[i+2],
-                    i+3, dut.RegFile.registers[i+3]);
+                    i,   dut.reg_file_i.registers[i],
+                    i+1, dut.reg_file_i.registers[i+1],
+                    i+2, dut.reg_file_i.registers[i+2],
+                    i+3, dut.reg_file_i.registers[i+3]);
             end
             $display("PC: %h  Instr: %h  a0: %h\n",
                 dut.PC,
