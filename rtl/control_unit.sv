@@ -4,9 +4,10 @@ module control_unit(
     input  logic [6:0] opcode,
     input  logic [2:0] funct3,
     input  logic [6:0] funct7,
-    input  logic       eq,
 
-    output logic       pc_src,
+    output logic       branch_e,
+    output logic       brance_ne,
+    output logic       jump,
     output logic       result_src,
     output logic       mem_write,
     output logic [2:0] alu_control,
@@ -14,11 +15,7 @@ module control_unit(
     output logic [1:0] imm_src,
     output logic       reg_write
 );
-    logic       branch_e;
-    logic       branch_ne;
     logic [1:0] alu_op;
-
-    assign pc_src = (branch_ne & ~eq) | (branch_e & eq);
 
     always_comb begin
         alu_op     = 2'b00;
