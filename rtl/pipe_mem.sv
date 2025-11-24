@@ -1,3 +1,4 @@
+
 module pipe_mem(
     //inputs from the execute stage
     input logic clk,
@@ -6,17 +7,17 @@ module pipe_mem(
     input logic [1:0] result_src_e,
     input logic mem_write_e,
     input logic [31:0] alu_result_e,
-    input logic wdata_e,
-    input logic [11:7] rde,
+    input logic [31:0] wdata_e,
+    input logic [4:0] rde,
     input logic [31:0] pc_plus4_e,
     //outputs to the memory stage
-    output logic  reg_write_m,
-    output logic result_src_m,
+    output logic reg_write_m,
+    output logic [1:0] result_src_m,
     output logic mem_write_m,
-    output logic alu_result_m,
-    output logic wdata_m,
-    output logic rdm,
-    output logic pc_plus4_m
+    output logic [31:0] alu_result_m,
+    output logic [31:0] wdata_m,
+    output logic [4:0] rdm,
+    output logic [31:0] pc_plus4_m
 );
 
 

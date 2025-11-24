@@ -40,6 +40,9 @@ logic [31:0] ALU_out;
 logic EQ;
 logic [31:0] data_rd;
 
+
+
+
 branch_pc_adder branch_pc_adder_i(
     .PC(PC),
     .ImmOp(ImmOp),
@@ -136,5 +139,37 @@ reg_file reg_file_i(
     .RD2 (RD2),
     .a0(a0)
 );
+
+
+// Pipeline Memory Stage output reg declerations
+logic        reg_write_m;
+logic [1:0]  result_src_m;   
+logic        mem_write_m;
+logic [31:0] alu_result_m;
+logic [31:0] wdata_m;
+logic [4:0]  rdm;            
+logic [31:0] pc_plus4_m;
+
+pipe_mem pipe_mem_i(
+    //inputs
+    .clk(clk),
+    .reset(rst),
+    .reg_write_e(),
+    .result_src_e(),
+    .mem_write_e(),
+    .alu_result_e(ALU_out),
+    .wdata_e(),
+    .rde(),
+    .pc_plus4_e(pc_plus4_e),
+    //outputs to the memory stage
+    .reg_write_m(reg_write_m),
+    .result_src_m(result_src_m),
+    .mem_write_m(mem_write_m),
+    .alu_result_m(alu_result_m),
+    .wdata_m(wdata_m),
+    .rdm(rdm),
+    .pc_plus4_m(pc_plus4_m)
+);
+
 
 endmodule
