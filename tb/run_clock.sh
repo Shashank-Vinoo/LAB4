@@ -9,6 +9,8 @@ TB_FILE="${SCRIPT_DIR}/tests/top_tb.sv"
 HEX_FILE="${RTL_DIR}/program.hex"
 OUT="top_sim"
 
+rm -f "${OUT}" top_tb.vcd
+
 echo "=== Compiling RISC-V Design ==="
 iverilog -g2012 -Wall -o "${OUT}" \
     "${TB_FILE}" \

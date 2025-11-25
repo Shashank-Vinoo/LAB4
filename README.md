@@ -14,6 +14,7 @@
   - [ ] Hazard unit:
     - [ ] Data hazard handling by forwarding
     - [ ] Control hazard handling by stalling
+    - [ ] Stalling for lw data dependency
 
 ## Testbench usage
 
