@@ -188,7 +188,7 @@ module top(
 
     pipe_fetch pipe_fetch_i(
         .clk(clk),
-        .rst(rst),
+        .rst(flush_pipe),
 
         .instr_f(instr_f),
         .pc_f(pc),
