@@ -18,7 +18,7 @@ module top(
     logic [2:0] funct3;
     logic [6:0] funct7;
 
-    logic pc_src;
+    logic take_branch;
     logic result_src;
     logic mem_write;
     logic [2:0] alu_control;
@@ -82,16 +82,11 @@ module top(
     assign result_src_d = {1'b0, result_src}; 
 
 
-    assign pc_src = (branch_e[0] & alu_zero) | (branch_e[1] & ~alu_zero) | jump_e;
+    assign take_branch = (branch_e[0] & alu_zero) | (branch_e[1] & ~alu_zero) | jump_e;
 
     // flushing for pipes
     logic flush;
     logic flush_pipe;
-
-    
-
-
-
 
 
     branch_pc_adder branch_pc_adder_i(
@@ -108,7 +103,7 @@ module top(
     );
 
     pc_src_mux pc_src_mux_i(
-        .pc_src(pc_src),
+        .pc_src(take_branch),
         .branch_pc(branch_pc),
         .pc_plus4(pc_plus4_f),
         .next_pc(next_pc)
@@ -193,7 +188,7 @@ module top(
 
     pipe_fetch pipe_fetch_i(
         .clk(clk),
-        .rst(rst),
+        .rst(flush_pipe),
 
         .instr_f(instr_f),
         .pc_f(pc),
@@ -284,7 +279,7 @@ module top(
     assign flush_pipe = rst | flush;
 
     hazard_unit hazard_unit_i(
-        .branch(branch_e),
+        .branch(take_branch),
         .flush(flush)
     );
 

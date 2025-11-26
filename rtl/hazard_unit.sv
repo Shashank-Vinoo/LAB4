@@ -5,7 +5,7 @@ module hazard_unit(
 
     control_hazard_unit control_hazard_unit_i(
         .branch(branch),
-        .flush(flush),
+        .flush(flush)
     );
 
 endmodule
