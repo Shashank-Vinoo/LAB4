@@ -12,7 +12,7 @@
   - [x] Insert stage registers
   - [ ] Testbench for simple pipelined CPU
   - [ ] Hazard unit:
-    - [ ] Data hazard handling by forwarding
+    - [x] Data hazard handling by forwarding
     - [x] Control hazard handling by stalling
     - [ ] Stalling for lw data dependency
 
