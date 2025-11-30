@@ -3,6 +3,7 @@ module pipe_decode (
     input logic rst,
     input logic reg_write_d,
     input logic [1:0] result_src_d,
+    input logic mem_read_d,
     input logic mem_write_d,
     input logic jump_d,
     input logic [1:0] branch_d,
@@ -20,6 +21,7 @@ module pipe_decode (
     
     output logic reg_write_e,
     output logic [1:0] result_src_e,
+    output logic mem_read_e,
     output logic mem_write_e,
     output logic jump_e,
     output logic [1:0] branch_e,
@@ -40,6 +42,7 @@ always_ff @(posedge clk) begin
     if (rst) begin
         reg_write_e <= 1'b0;
         result_src_e <= 2'b0;
+        mem_read_e <= 1'b0;
         mem_write_e <= 1'b0;
         jump_e <= 1'b0;
         branch_e <= 2'b0;
@@ -58,6 +61,7 @@ always_ff @(posedge clk) begin
     else begin
         reg_write_e <= reg_write_d;
         result_src_e <= result_src_d;
+        mem_read_e <= mem_read_d;
         mem_write_e <= mem_write_d;
         jump_e <= jump_d;
         branch_e <= branch_d;

@@ -8,6 +8,7 @@ module control_unit(
     output logic [1:0] branch,
     output logic       jump,
     output logic       result_src,
+    output logic       mem_read,
     output logic       mem_write,
     output logic [2:0] alu_control,
     output logic       alu_src,
@@ -22,6 +23,7 @@ module control_unit(
         imm_src    = 2'b00;
         branch  = 2'b0;
         alu_src    = 1'b0;
+        mem_read   = 1'b0;
         mem_write  = 1'b0;
         result_src = 1'b0;
 
@@ -53,6 +55,7 @@ module control_unit(
                 imm_src    = 2'b00; 
                 alu_src    = 1'b1;
                 result_src = 1'b1;
+                mem_read   = 1'b1; 
             end
             7'b0110011: begin // R type
                 alu_op     = 2'b10;

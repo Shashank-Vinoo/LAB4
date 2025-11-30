@@ -1,19 +1,27 @@
 module data_hazard_unit (
+    input logic [4:0]   rs1_d,
+    input logic [4:0]   rs2_d,
     input logic [4:0]   rs1_e,
     input logic [4:0]   rs2_e,
+    input logic         mem_read_e,
+    input logic [4:0]   rd_e,
     input logic [4:0]   rd_m,
     input logic         reg_write_m,
     input logic [4:0]   rd_w,
     input logic         reg_write_w,
 
     output logic [1:0]  forward_a_e,
-    output logic [1:0]  forward_b_e
+    output logic [1:0]  forward_b_e,
+    output logic        stall
 );
 
     always_comb begin 
         // no forwarding by default
         forward_a_e = 2'b00;
         forward_b_e = 2'b00;
+
+        //stalling
+        stall = 1'b0;
         
         // check ALU input A
         if(reg_write_m && (rd_m != 0) && (rd_m == rs1_e)) begin
@@ -30,6 +38,11 @@ module data_hazard_unit (
         else if(reg_write_w && (rd_w != 0) && (rd_w == rs2_e)) begin
             forward_b_e = 2'b01; 
         end
+
+        if(mem_read_e && (rd_e == rs1_d || rd_e == rs2_d)) begin
+            stall = 1'b1;
+        end 
+
     end
 
 

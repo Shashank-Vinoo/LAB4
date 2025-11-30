@@ -25,6 +25,7 @@ module top(
     logic alu_src;
     logic [1:0] imm_src;
     logic reg_write;
+    logic mem_read;
 
     //Regfile 
     logic [31:0] rd1;
@@ -49,6 +50,7 @@ module top(
     // Decode->Execute 
     logic        reg_write_e;
     logic [1:0]  result_src_e;
+    logic        mem_read_e;
     logic        mem_write_e;
     logic        jump_e = 1'b0;
     logic [1:0]      branch_e;
@@ -92,6 +94,9 @@ module top(
     logic [1:0] forward_b_e;    
     logic [4:0] rs1_e;
     logic [4:0] rs2_e;
+
+    // Stalling
+    logic stall;
 
 
     assign result_src_d = {1'b0, result_src}; 
@@ -137,6 +142,7 @@ module top(
         .funct7(funct7),
         .branch(branch_d),
         .result_src(result_src),
+        .mem_read(mem_read),
         .mem_write(mem_write),
         .alu_control(alu_control),
         .alu_src(alu_src),
@@ -214,6 +220,7 @@ module top(
     pipe_fetch pipe_fetch_i(
         .clk(clk),
         .rst(flush_pipe),
+        .stall(stall),
 
         .instr_f(instr_f),
         .pc_f(pc),
@@ -231,6 +238,7 @@ module top(
         
         .reg_write_d(reg_write),
         .result_src_d(result_src_d),
+        .mem_read_d(mem_read),
         .mem_write_d(mem_write),
         .jump_d(1'b0),
         .branch_d(branch_d),
@@ -248,6 +256,7 @@ module top(
 
         .reg_write_e(reg_write_e),
         .result_src_e(result_src_e),
+        .mem_read_e(mem_read_e),
         .mem_write_e(mem_write_e),
         //.jump_e(jump_e),
         .branch_e(branch_e),
@@ -311,14 +320,19 @@ module top(
         .branch(take_branch),
         .flush(flush),
 
+        .rs1_d(rs1_addr),
+        .rs2_d(rs2_addr),
         .rs1_e(rs1_e),
         .rs2_e(rs2_e),
+        .mem_read_e(mem_read_e),
+        .rd_e(rd_e),
         .rd_m(rd_m),
         .reg_write_m(reg_write_m),
         .rd_w(rd_w),
         .reg_write_w(reg_write_w),
         .forward_a_e(forward_a_e),
-        .forward_b_e(forward_b_e)
+        .forward_b_e(forward_b_e),
+        .stall(stall)
     );
 
 
